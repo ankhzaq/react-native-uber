@@ -4,7 +4,7 @@ import tw from 'tailwind-react-native-classnames';
 import { Image } from 'react-native-web';
 import NavOptions from '../components/NavOptions';
 
-function HomeScreen(props) {
+function HomeScreen() {
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
           <View style={tw`p-5`}>

@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Image, View, SafeAreaView, StyleSheet, Text } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
-import { Image } from 'react-native-web';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
@@ -20,13 +19,23 @@ const HomeScreen = () => {
                 uri: "https://links.papareact.com/gzs"
               }}
             />
-
             <GooglePlacesAutocomplete
               debounce={400}
               nearbyPlacesAPI="GooglePlacesSearch"
               placeholder="Where from?"
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: 'en'
+              }}
+              styles={{
+                container: {
+                  flex: 0
+                },
+                textInput: {
+                  fontSize: 18
+                }
+              }}
             />
-
             <NavOptions />
           </View>
         </SafeAreaView>);

@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native-web';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
 const MapScreen = () => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text>MapScreen</Text>
-        </View>);
+        </SafeAreaView>);
 }
 
 const styles = StyleSheet.create({

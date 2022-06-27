@@ -1,11 +1,15 @@
 import React from 'react';
-import { Image, View, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Image, View, SafeAreaView, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
+import { useDispatch } from 'react-redux';
+import { setDestination, setOrigin } from '../slices/navSlice';
 
 const HomeScreen = () => {
+    const dispatch = useDispatch();
+
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
           <View style={tw`p-5`}>
@@ -21,7 +25,17 @@ const HomeScreen = () => {
             />
             <GooglePlacesAutocomplete
               debounce={400}
+              enablePoweredByContainer={false}
+              fetchDetails
+              minLength={2}
               nearbyPlacesAPI="GooglePlacesSearch"
+              onPress={(data, details = null) => {
+                dispatch(setOrigin({
+                  description: data.description,
+                  location: details.geometry.location,
+                }));
+                dispatch(setDestination(null));
+              }}
               placeholder="Where from?"
               query={{
                 key: GOOGLE_MAPS_APIKEY,

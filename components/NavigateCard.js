@@ -3,8 +3,15 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useDispatch } from 'react-redux';
+import { setDestination } from '../slices/navSlice';
+import { useNavigation } from '@react-navigation/native';
 
 function NavigateCard(props) {
+
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView
           style={tw`bg-white flex-1`}
@@ -21,6 +28,15 @@ function NavigateCard(props) {
                       }}
                       fetchDetails={true}
                       minLength={2}
+                      onPress={(data, details = null) => {
+                          dispatch(
+                            setDestination({
+                                description: data.description,
+                                location: details.geometry.location
+                            })
+                          );
+                          // navigation.navigate('RideOptionsCard');
+                      }}
                       nearbyPlacesAPI="GooglePlacesSearch"
                       placeholder="where to?"
                       returnKeyType="search"

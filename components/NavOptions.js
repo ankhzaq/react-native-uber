@@ -32,6 +32,7 @@ const NavOptions = () => {
       renderItem={( {item} ) => (
         <TouchableOpacity
           disabled={!origin}
+          data-test={`navOption-${item.screen}`}
           onPress={() => navigation.navigate(item.screen)}
           style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
         >

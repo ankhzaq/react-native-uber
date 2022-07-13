@@ -27,6 +27,7 @@ const HomeScreen = () => {
             <GooglePlacesAutocomplete
               debounce={400}
               enablePoweredByContainer={false}
+              data-test="googlePlacesAutocomplete"
               fetchDetails
               minLength={2}
               nearbyPlacesAPI="GooglePlacesSearch"
